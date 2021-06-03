@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="sp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numeros Par</title>
+</head>
+<body>
+
+    <label for="num">Ingrese el numero</label>
+    <input type="number" name="numero" id="numero">
+    <input type="button" value="Guardar Numero" onclick="GuardarNumero()"><br><br>
+    <input type="button" value="Ver Numeros" onclick="EnviarNumero()">
+    <script>
+        let numeros = [];        
+        function GuardarNumero() {
+            if(document.getElementById("numero").value == ''){
+                alert("No se ha ingresado ningun numero");
+                return;
+            }
+            let num = (document.getElementById("numero").value);
+            if( num > 100 ){
+                alert("El numero es mayor a 100");
+                return;
+            }else if(num < 0 ){
+                alert("El numero es negativo");
+                return;
+            }
+
+            if(num%2 == 0){
+                alert("El numero es par, guardado correctamente");
+                numeros.push(document.getElementById("numero").value);
+                document.getElementById("numero").value = "";
+            }else{
+                alert("No es un numero par");
+            }
+            
+        }
+
+        function EnviarNumero() {
+           alert("Los numeros ingresados son: "+numeros.toString());
+           numeros = [];
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="sp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numeros Par - Impar</title>
+</head>
+<body>
+
+    <label for="num">Ingrese el numero</label>
+    <input type="number" name="numero" id="numero">
+    <input type="button" value="Sumar Numero" onclick="GuardarNumero()"><br><br>
+    <input type="button" value="Ver Suma" onclick="EnviarNumero()">
+    <script>
+        let numeros = [];
+        let suma = 0;
+        let sumaproducto = 0;      
+        function GuardarNumero() {
+            if(document.getElementById("numero").value == ''){
+                alert("No se ha ingresado ningun numero");
+                return;
+            }
+            let num = parseInt(document.getElementById("numero").value);          
+
+            if(num%2 == 0){
+                suma += num;
+                document.getElementById("numero").value = "";
+            }else{
+                sumaproducto += (num%2);
+                document.getElementById("numero").value = "";
+            }
+        }
+        function EnviarNumero() {
+           alert("La suma de los pares es: "+suma+"\nLa suma del producto de los impares es: "+sumaproducto);           
+           suma = 0;
+           sumaproducto = 0;
+        }
+    </script>
+</body>
+</html>

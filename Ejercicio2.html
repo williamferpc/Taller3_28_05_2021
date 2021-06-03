@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="sp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> N numeros</title>
+</head>
+<body>
+
+    <label for="num">Ingrese el numero</label>
+    <input type="number" name="numero" id="numero">
+    <input type="button" value="Guardar Numero" onclick="GuardarNumero()"><br><br>
+    <input type="button" value="Calcular Mayor" onclick="EnviarNumero()">
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+    <script>
+        let numeros = [];
+        function GuardarNumero() {
+            // alert("Numero guardado correctamente, ingrese el siguiente");            
+            numeros.push(document.getElementById("numero").value);
+            document.getElementById("numero").value = "";
+        }
+        function EnviarNumero() {
+            $.ajax({
+                url : 'Ejercicio2.php',
+                data : { numeros : numeros },
+                type : 'POST',
+                dataType : 'json',
+                success : function(json) {
+                    alert('El numero mayor es el: '+json.numeromayor);
+                    numeros = [];
+                },
+                error : function(xhr, status) {
+                    alert('Disculpe, existió un problema');
+                },
+                complete : function(xhr, status) {
+                    // alert('Petición realizada');
+                }
+            });
+        }
+        
+
+    </script>
+</body>
+</html>
